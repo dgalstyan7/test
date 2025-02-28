@@ -4,9 +4,25 @@ on:
   push:
     branches:
       - main
+      - test
 
 jobs:
+  test:
+    if: github.ref == 'refs/heads/test'
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      - name: Run tests
+        run: |
+          echo "Running tests..."
+          # Ajoutez ici des commandes pour exécuter vos tests
+          echo "Tests passed!"
+
   build:
+    if: github.ref == 'refs/heads/main'
     runs-on: ubuntu-latest
 
     steps:
